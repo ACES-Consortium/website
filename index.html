@@ -1,86 +1,949 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ACES Consortium</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ACES is a cross-domain initiative developing a common physical and logical interface for modular robotics and IoT. Explore the working draft and help shape the standard.">
+<meta name="theme-color" content="#15191b">
+<title>ACES Consortium · A common connection. More possibilities.</title>
+<style>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+:root {
+  --ink:#15191b;
+  --panel:#20272a;
+  --muted:#abb6b9;
+  --white:#f7f8f4;
+  --cyan:#62e4e0;
+  --orange:#ff9762;
+  --line:#384246;
+  --max:1200px}
+* {
+  box-sizing:border-box}
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:100px}
+body {
+  margin:0;
+  background:var(--ink);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6}
+a {
+  color:inherit}
+a:focus-visible,summary:focus-visible {
+  outline:3px solid var(--orange);
+  outline-offset:6px}
+a:hover {
+  text-decoration-color:var(--cyan)}
+.wrap {
+  max-width:var(--max);
+  margin:auto;
+  padding:0 40px}
+.skip {
+  position:absolute;
+  left:16px;
+  top:-80px;
+  z-index:10;
+  padding:12px;
+  background:var(--white);
+  color:var(--ink)}
+.skip:focus {
+  top:10px}
+header {
+  border-bottom:1px solid var(--line);
+  background:var(--ink)}
+.nav {
+  min-height:96px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px}
+.brand {
+  text-decoration:none;
+  line-height:1}
+.brand strong {
+  font-size:36px;
+  letter-spacing:-2px}
+.brand span {
+  display:block;
+  font-size:9px;
+  letter-spacing:3px;
+  margin-top:9px;
+  color:var(--muted)}
+nav {
+  display:flex;
+  gap:27px;
+  align-items:center;
+  font-size:13px}
+nav a {
+  text-decoration:none}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:25px;
+  padding:14px 21px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+  border:1px solid var(--line);
+  border-radius:3px;
+  min-height:48px;
+  transition:background .2s,color .2s}
+.button:hover {
+  background:var(--white);
+  color:var(--ink)}
+.button.primary {
+  background:var(--cyan);
+  color:var(--ink);
+  border-color:var(--cyan)}
+.button.primary:hover {
+  background:#a8f4ef}
+.button.orange {
+  background:var(--orange);
+  color:var(--ink);
+  border-color:var(--orange)}
+.eyebrow {
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin:0 0 24px}
+.eyebrow:before {
+  content:"";
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:currentColor;
+  margin-right:10px}
+.hero {
+  padding:85px 0 38px}
+.hero-grid {
+  display:grid;
+  grid-template-columns:1.12fr 1fr;
+  gap:35px;
+  align-items:center}
+h1 {
+  font-size:clamp(48px,5.8vw,76px);
+  line-height:1.05;
+  letter-spacing:-4px;
+  font-weight:500;
+  margin:0 0 28px}
+h1 em {
+  font-style:normal;
+  color:var(--cyan)}
+.lead {
+  font-size:17px;
+  color:#bdc6c8;
+  max-width:495px;
+  line-height:1.7}
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px}
+.hero-art {
+  width:100%;
+  height:auto}
+.art-label {
+  font:10px Arial,sans-serif;
+  letter-spacing:1.5px;
+  fill:#c2ced0}
+.art-small {
+  font:9px Arial,sans-serif;
+  fill:#91a3a7}
+.hero-caption {
+  font-size:10px;
+  letter-spacing:1.2px;
+  color:var(--muted);
+  text-align:center;
+  text-transform:uppercase}
+.status {
+  margin-top:65px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-top:20px;
+  font-size:11px;
+  color:var(--muted)}
+.status strong {
+  color:var(--white);
+  font-weight:normal}
+.dot {
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:var(--orange);
+  border-radius:50%;
+  margin-right:8px}
+section {
+  padding:90px 0;
+  border-bottom:1px solid var(--line)}
+h2 {
+  font-size:clamp(34px,4vw,50px);
+  font-weight:500;
+  letter-spacing:-2px;
+  line-height:1.12;
+  margin:0 0 24px}
+h3 {
+  font-size:21px;
+  font-weight:500;
+  letter-spacing:-.5px;
+  line-height:1.3;
+  margin:0 0 14px}
+p {
+  margin:0 0 18px}
+.split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px}
+.body-copy {
+  color:var(--muted);
+  font-size:15px}
+.problem-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:26px}
+.problem-tags span {
+  border:1px solid var(--line);
+  padding:7px 12px;
+  font-size:11px;
+  color:#c6ced0;
+  border-radius:2px}
+.light {
+  background:var(--white);
+  color:var(--ink)}
+.light .eyebrow {
+  color:#227571}
+.light .body-copy {
+  color:#536064}
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  align-items:flex-start;
+  margin-bottom:44px}
+.section-head h2 {
+  max-width:620px}
+.section-head>p {
+  max-width:315px;
+  font-size:14px;
+  color:#536064}
+.steps {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  list-style:none;
+  padding:0;
+  margin:0}
+.steps li {
+  border-top:1px solid #b8c4c4;
+  padding:24px 28px 0 0;
+  position:relative}
+.steps li:not(:last-child):after {
+  content:'→';
+  position:absolute;
+  right:24px;
+  top:22px;
+  font-size:20px;
+  color:#2c7774}
+.number {
+  font-family:monospace;
+  color:#347c79;
+  font-size:12px;
+  display:block;
+  margin-bottom:35px}
+.steps p {
+  font-size:13px;
+  color:#536064}
+.boundary {
+  display:flex;
+  gap:15px;
+  padding:19px 22px;
+  margin-top:36px;
+  border:1px solid #cbd3cf;
+  font-size:12px}
+.boundary strong {
+  white-space:nowrap}
+.coverage {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:40px}
+.coverage article {
+  background:var(--ink);
+  padding:30px}
+.coverage .icon {
+  font-family:monospace;
+  color:var(--cyan);
+  font-size:23px;
+  display:block;
+  margin-bottom:24px}
+.coverage p,.audience p {
+  color:var(--muted);
+  font-size:13px}
+.note {
+  font-size:12px;
+  color:var(--muted);
+  margin:22px 0 0}
+.audience {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+  margin-top:45px}
+.audience article {
+  border-top:2px solid var(--cyan);
+  padding-top:23px}
+.audience h3 {
+  font-size:18px}
+.audience .index {
+  font:11px monospace;
+  color:var(--muted);
+  margin-bottom:28px}
+.usecases {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px}
+.usecase {
+  background:#e9eeea}
+.usecase svg {
+  display:block;
+  width:100%;
+  height:auto;
+  background:#e0e7e2}
+.usecase-text {
+  padding:30px}
+.usecase-text p {
+  color:#536064;
+  font-size:14px}
+.tag {
+  color:#256c68;
+  font:10px monospace;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:15px}
+.consortium-box {
+  border-left:2px solid var(--orange);
+  padding:5px 0 5px 28px}
+.consortium-box p {
+  color:var(--muted);
+  font-size:15px}
+.consortium-box a {
+  color:var(--cyan);
+  font-size:13px;
+  text-underline-offset:5px}
+.roadmap {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:65px}
+.roadmap-item {
+  padding:22px 0;
+  border-top:1px solid var(--line)}
+.roadmap-item h3 {
+  font-size:17px}
+.roadmap-item p {
+  font-size:13px;
+  color:var(--muted);
+  margin:0}
+.pill {
+  font:10px monospace;
+  color:var(--orange);
+  margin-bottom:10px;
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:1px}
+.resource {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  border-top:1px solid var(--line);
+  padding:23px 0;
+  text-decoration:none}
+.resource strong {
+  display:block;
+  font-size:15px;
+  font-weight:normal}
+.resource small {
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px}
+.resource>span:last-child {
+  color:var(--cyan);
+  font-size:24px}
+.resource:hover strong {
+  text-decoration:underline;
+  text-underline-offset:5px}
+.join {
+  background:var(--cyan);
+  color:var(--ink);
+  padding:70px 0}
+.join .eyebrow {
+  color:#235b59}
+.join .split {
+  align-items:center;
+  gap:50px}
+.join p {
+  font-size:15px;
+  max-width:460px}
+.join .button {
+  background:var(--ink);
+  color:var(--white);
+  border-color:var(--ink)}
+.join .button:hover {
+  background:#364548}
+.join .contact {
+  display:block;
+  margin-top:22px;
+  font-size:13px;
+  text-underline-offset:4px}
+footer {
+  padding:35px 0}
+.footer-row {
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  align-items:center;
+  font-size:11px;
+  color:var(--muted)}
+footer strong {
+  font-size:22px;
+  color:var(--white);
+  letter-spacing:-1px}
+.footer-links {
+  display:flex;
+  gap:25px}
+footer a {
+  text-decoration:none}
+.mobile-sections {
+  display:none;
+}
+@media(max-width:900px) {
+  .wrap {
+  padding:0 26px}
+nav {
+  gap:16px}
+nav .optional {
+  display:none}
+.hero-grid {
+  grid-template-columns:1fr 1fr;
+  gap:10px}
+h1 {
+  letter-spacing:-2.5px}
+.split {
+  gap:40px}
+.audience {
+  grid-template-columns:1fr 1fr}
+.section-head {
+  gap:25px}
+.coverage article {
+  padding:24px}
+.roadmap {
+  gap:35px}
+}
+@media(max-width:650px) {
+.mobile-sections {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 20px;
+  padding-bottom:12px;
+  border-top:1px solid var(--line);
+}
+.mobile-sections a {
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  font-size:12px;
+  padding:4px 0;
+}
+.mobile-sections a:hover {
+  color:var(--cyan);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      background: #111;
-    }
+  html {
+  scroll-padding-top:25px}
+.wrap {
+  padding:0 22px}
+.nav {
+  min-height:82px}
+.brand strong {
+  font-size:30px}
+.nav nav a:not(.button) {
+  display:none}
+nav .button {
+  font-size:11px;
+  padding:10px 13px;
+  min-height:44px}
+.hero {
+  padding-top:45px}
+.hero-grid,.split,.roadmap {
+  grid-template-columns:1fr;
+  gap:30px}
+h1 {
+  font-size:clamp(44px,12vw,55px);
+  letter-spacing:-3px}
+.lead {
+  font-size:16px}
+.hero-art {
+  max-width:440px;
+  display:block;
+  margin:auto}
+.hero-caption {
+  margin-top:-8px}
+.status {
+  margin-top:30px;
+  flex-direction:column;
+  gap:8px}
+section {
+  padding:58px 0}
+h2 {
+  font-size:36px}
+.section-head {
+  display:block;
+  margin-bottom:30px}
+.section-head>p {
+  max-width:none}
+.steps {
+  grid-template-columns:1fr 1fr;
+  gap:25px 15px}
+.steps li {
+  padding-right:14px}
+.steps li:after {
+  display:none}
+.number {
+  margin-bottom:20px}
+.boundary {
+  display:block}
+.boundary strong {
+  display:block;
+  margin-bottom:7px}
+.coverage {
+  grid-template-columns:1fr}
+.coverage article {
+  display:grid;
+  grid-template-columns:35px 1fr;
+  column-gap:15px;
+  padding:24px}
+.coverage .icon {
+  grid-row:1/3;
+  margin:0}
+.coverage h3 {
+  font-size:19px}
+.coverage p {
+  margin:0}
+.audience {
+  gap:25px 20px}
+.usecases {
+  grid-template-columns:1fr}
+.usecase-text {
+  padding:25px}
+.join {
+  padding:55px 0}
+.footer-row {
+  align-items:flex-start;
+  flex-direction:column}
+.footer-links {
+  flex-wrap:wrap}
+.actions .button {
+  font-size:12px;
+  padding:13px 16px;
+  gap:12px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+  scroll-behavior:auto}
+* {
+  transition:none!important}
+}
 
-    header {
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 24px;
-      padding: 0 20px;
-      background: #111;
-      color: white;
-      font-size: 14px;
-    }
 
-    header a {
-      color: white;
-      text-decoration: none;
-    }
-
-    header a:hover {
-      text-decoration: underline;
-    }
-
-    .join-link {
-      font-weight: 600;
-    }
-
-    iframe {
-      display: block;
-      width: 100%;
-      height: calc(100vh - 44px);
-      border: 0;
-      background: white;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        gap: 14px;
-        padding: 0 12px;
-        font-size: 12px;
-      }
-    }
-  </style>
+</style>
 </head>
-
 <body>
-
-  <header>
-    <a href="mailto:contact@aces-iot.org">
-      info@aces-consortium.org
-    </a>
-
-    <a
-      class="join-link"
-      href="https://forms.gle/AHRyF8r9wquhLAK77"
-      target="_blank"
-      rel="noopener noreferrer">
-      Join the Consortium
-    </a>
-  </header>
-
-  <iframe
-    src="/ACES-Consortium-Overview.pdf"
-    title="ACES Consortium Overview">
-  </iframe>
-
+<a class="skip" href="#main">Skip to content</a>
+<header>
+<div class="wrap nav">
+<a class="brand" href="#" aria-label="ACES Consortium home">
+<strong>ACES<span style="display:inline;color:var(--cyan);font-size:36px;letter-spacing:0">.</span>
+</strong>
+<span>CONSORTIUM</span>
+</a>
+<nav aria-label="Main navigation">
+<a href="standard.html">The standard</a>
+<a href="#applications">Applications</a>
+<a class="optional" href="#consortium">Consortium</a>
+<a class="optional" href="#resources">Resources</a>
+<a class="button" href="#join">Help shape ACES <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+<nav class="wrap mobile-sections" aria-label="Section navigation">
+<a href="standard.html">The standard</a>
+<a href="#applications">Applications</a>
+<a href="#consortium">Consortium</a>
+<a href="#resources">Resources</a>
+</nav>
+</header>
+<main id="main">
+<div class="hero">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<p class="eyebrow">Modular by design. Open by ambition.</p>
+<h1>A common<br>connection.<br>
+<em>More possibilities.</em>
+</h1>
+<p class="lead">Different modules. Different makers. One shared approach to connecting them.</p>
+<p class="body-copy">ACES is developing a vendor-neutral interface for modular robotics and IoT, spanning physical connection, power, data, and execution.</p>
+<div class="actions">
+<a class="button primary" href="#standard">Explore the approach <span aria-hidden="true">↓</span>
+</a>
+<a class="button" href="ACES-Consortium-Overview.pdf" target="_blank" rel="noopener" aria-label="Read the overview (PDF, opens in a new tab)">Read the overview <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+<div>
+<svg class="hero-art" viewBox="0 0 520 490" role="img" aria-labelledby="hero-title hero-desc">
+<title id="hero-title">A shared interface for different modules</title>
+<desc id="hero-desc">A central ACES boundary connects sensing, actuation, edge computing and communications. Conceptual diagram, not a connector design.</desc>
+<defs>
+<pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="1" fill="#344347"/>
+</pattern>
+</defs>
+<rect width="520" height="490" fill="url(#grid)"/>
+<g fill="none" stroke="#436467" stroke-width="1">
+<path d="M260 110V180M260 310V380M110 245H190M330 245H410"/>
+<path d="M160 145L210 195M310 295L360 345M160 345L210 295M310 195L360 145" stroke-dasharray="4 5"/>
+<circle cx="260" cy="245" r="160" stroke="#2f4245"/>
+<circle cx="260" cy="245" r="125" stroke="#2f4245"/>
+</g>
+<g fill="#202d30" stroke="#6ce4df">
+<path d="M260 160l74 42v86l-74 43-74-43v-86z"/>
+<path d="M260 177l59 34v68l-59 34-59-34v-68z" opacity=".4"/>
+</g>
+<text x="260" y="244" fill="#70eee8" font-family="Arial,sans-serif" font-size="32" text-anchor="middle" letter-spacing="-1">ACES</text>
+<text x="260" y="267" class="art-small" text-anchor="middle">SHARED INTERFACE</text>
+<g fill="#20272a" stroke="#50666c">
+<rect x="200" y="42" width="120" height="75" rx="4"/>
+<rect x="376" y="208" width="120" height="75" rx="4"/>
+<rect x="200" y="373" width="120" height="75" rx="4"/>
+<rect x="24" y="208" width="120" height="75" rx="4"/>
+</g>
+<g fill="none" stroke="#62e4e0" stroke-width="2">
+<circle cx="260" cy="69" r="10"/>
+<circle cx="260" cy="69" r="3"/>
+<path d="M425 231h22v16h-22zM420 235h5m22 8h6M249 394h22v20h-22zM253 389v5m7-5v5m7-5v5m-14 20v5m7-5v5m7-5v5"/>
+<path d="M72 239q12-18 24 0m-20 4q8-12 16 0m-12 4q4-5 8 0"/>
+</g>
+<g class="art-label" text-anchor="middle">
+<text x="260" y="100">SENSING</text>
+<text x="436" y="268">ACTUATION</text>
+<text x="260" y="434">EDGE COMPUTE</text>
+<text x="84" y="268">COMMS</text>
+</g>
+<g fill="#ff9762">
+<circle cx="260" cy="138" r="4"/>
+<circle cx="355" cy="245" r="4"/>
+<circle cx="260" cy="351" r="4"/>
+<circle cx="164" cy="245" r="4"/>
+</g>
+</svg>
+<p class="hero-caption">One boundary. Many capabilities. <span style="color:var(--orange)">/ Concept</span>
+</p>
+</div>
+</div>
+<div class="status">
+<span>
+<span class="dot">
+</span>
+<strong>Standard v0.2</strong> · Working draft</span>
+<span>Appliance Communications and Execution Standard</span>
+<span>Cross-domain by design</span>
+</div>
+</div>
+</div>
+<section id="challenge">
+<div class="wrap split">
+<div>
+<p class="eyebrow">01 / The integration problem</p>
+<h2>More capability.<br>Less custom integration.</h2>
+</div>
+<div>
+<p class="body-copy">Robotic and IoT systems bring together sensors, actuators, and computing from different vendors. Each new module can mean another connector, another configuration, and another layer of glue code.</p>
+<p class="body-copy">ACES aims to make the module boundary a shared foundation, so teams can spend more time building useful systems and less time making the pieces fit.</p>
+<div class="problem-tags">
+<span>Custom wiring</span>
+<span>Vendor-specific adapters</span>
+<span>Manual configuration</span>
+<span>Tightly coupled systems</span>
+</div>
+</div>
+</div>
+</section>
+<section class="light" id="standard">
+<div class="wrap">
+<p class="eyebrow">02 / The approach</p>
+<div class="section-head">
+<h2>From connection<br>to capability.</h2>
+<p>A common way for a system to understand what a module can do, invoke its functions, and observe the result. This is the intended flow under development.</p>
+</div>
+<ol class="steps">
+<li>
+<span class="number">01 / CONNECT</span>
+<h3>Make the connection.</h3>
+<p>A shared interface brings together mechanical connection, power, and data.</p>
+</li>
+<li>
+<span class="number">02 / DISCOVER</span>
+<h3>Understand the module.</h3>
+<p>An Electronic Data Sheet (EDS) describes capabilities, requirements, and available functions.</p>
+</li>
+<li>
+<span class="number">03 / OPERATE</span>
+<h3>Invoke a function.</h3>
+<p>The controlling system uses common execution semantics to request the module’s capabilities.</p>
+</li>
+<li>
+<span class="number">04 / MONITOR</span>
+<h3>Observe the result.</h3>
+<p>Status and telemetry give the system visibility into module operation.</p>
+</li>
+</ol>
+<div class="boundary">
+<strong>A boundary, not a control platform.</strong>
+<span>Applications retain the decisions: orchestration, optimization, analytics, and where intelligence lives.</span>
+</div>
+</div>
+</section>
+<section id="coverage">
+<div class="wrap">
+<p class="eyebrow">03 / Scope</p>
+<div class="split">
+<h2>Physical meets logical.<br>At the module boundary.</h2>
+<p class="body-copy">The proposed standard connects the practical realities of hardware with a consistent description of capability. It is intended to complement existing transports, protocols, and higher-level frameworks.</p>
+</div>
+<div class="coverage">
+<article>
+<span class="icon" aria-hidden="true">⌁</span>
+<h3>Connection &amp; power</h3>
+<p>Mechanical coupling, electrical connection, and power requirements at the module interface.</p>
+</article>
+<article>
+<span class="icon" aria-hidden="true">{ }</span>
+<h3>Data &amp; discovery</h3>
+<p>Data exchange and machine-readable descriptions of what each module provides and requires.</p>
+</article>
+<article>
+<span class="icon" aria-hidden="true">↗</span>
+<h3>Execution &amp; telemetry</h3>
+<p>Common semantics for invoking functions and understanding operational status and outputs.</p>
+</article>
+</div>
+<p class="note">Work in progress: physical and electrical particulars are not settled. Certification is not currently available.</p>
+</div>
+</section>
+<section id="benefits">
+<div class="wrap">
+<p class="eyebrow">04 / Shared opportunity</p>
+<h2>Build your part.<br>Expand what it can become.</h2>
+<p class="body-copy">The potential benefits of a shared interface, to be explored and validated together.</p>
+<div class="audience">
+<article>
+<p class="index">01 / MAKE</p>
+<h3>Manufacturers</h3>
+<p>Design modules for a broader range of systems, with less reliance on bespoke integrations.</p>
+</article>
+<article>
+<p class="index">02 / INTEGRATE</p>
+<h3>System integrators</h3>
+<p>Combine capabilities across vendors and reuse integration work across projects.</p>
+</article>
+<article>
+<p class="index">03 / OPERATE</p>
+<h3>Operators</h3>
+<p>Explore systems that are easier to maintain, adapt, and upgrade as needs change.</p>
+</article>
+<article>
+<p class="index">04 / EXPLORE</p>
+<h3>Research partners</h3>
+<p>Test ideas on a common foundation and help identify the requirements that matter in practice.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="light" id="applications">
+<div class="wrap">
+<p class="eyebrow">05 / Possibilities in practice</p>
+<div class="section-head">
+<h2>Different environments.<br>A common ambition.</h2>
+<p>Illustrative use cases, not deployed ACES systems. These scenarios show the kinds of modularity the initiative aims to support.</p>
+</div>
+<div class="usecases">
+<article class="usecase">
+<svg viewBox="0 0 560 290" role="img" aria-labelledby="industrial-title">
+<title id="industrial-title">Concept illustration of a modular industrial robot with interchangeable sensing and tooling</title>
+<g fill="none" stroke="#c2cec7">
+<path d="M0 240h560M0 200h560M0 160h560M80 0v290M160 0v290M240 0v290M320 0v290M400 0v290M480 0v290"/>
+</g>
+<path d="M55 235h450v18H55z" fill="#a9b9b1"/>
+<path d="M82 213h110v22H82zM106 177h63v36h-63z" fill="#293d3e"/>
+<g stroke="#293d3e" stroke-width="27" fill="none" stroke-linecap="round">
+<path d="M138 177l47-85 96 35 41-62"/>
+</g>
+<g fill="#65c7be" stroke="#293d3e" stroke-width="7">
+<circle cx="138" cy="177" r="18"/>
+<circle cx="185" cy="92" r="20"/>
+<circle cx="281" cy="127" r="18"/>
+</g>
+<path d="M319 55l25 14-8 15-25-14z" fill="#ed8e59"/>
+<path d="M333 83l20 16-4 16m-19-30l-5 26 12 10" fill="none" stroke="#293d3e" stroke-width="7"/>
+<path d="M365 173h84v62h-84z" fill="#b6c7bc" stroke="#758f82"/>
+<path d="M365 173l42-21 42 21-42 22zM407 195v40" fill="#cedbd0" stroke="#758f82"/>
+<path d="M337 123l70 30" stroke="#26877d" stroke-dasharray="4 6"/>
+<rect x="413" y="53" width="82" height="58" rx="3" fill="#293d3e"/>
+<circle cx="454" cy="77" r="12" fill="none" stroke="#62e4e0" stroke-width="3"/>
+<text x="454" y="100" text-anchor="middle" fill="#e9eeea" font-family="monospace" font-size="8">SENSING</text>
+<path d="M388 81h-33" stroke="#27867c" stroke-dasharray="4 5"/>
+</svg>
+<div class="usecase-text">
+<span class="tag">Industrial automation / Concept</span>
+<h3>Reconfigure the cell.<br>Keep the foundation.</h3>
+<p>Imagine changing a robot’s sensing or tooling without rebuilding every interface around it. A shared boundary could make capability changes more repeatable.</p>
+</div>
+</article>
+<article class="usecase">
+<svg viewBox="0 0 560 290" role="img" aria-labelledby="agri-title">
+<title id="agri-title">Concept illustration of a field robot carrying interchangeable crop sensing modules</title>
+<circle cx="451" cy="60" r="23" fill="#edb88f"/>
+<path d="M0 145q150-50 280 0t280 0v145H0z" fill="#c9d7c6"/>
+<g stroke="#a4bda0" stroke-width="3">
+<path d="M0 290l210-145M110 290l150-145M240 290l70-145M380 290l-20-145M530 290L410 145"/>
+</g>
+<path d="M153 153h190v43H153z" fill="#293d3e"/>
+<path d="M182 111h112l24 42H167z" fill="#6ac3b8" stroke="#293d3e" stroke-width="5"/>
+<g fill="#293d3e" stroke="#e0e7e2" stroke-width="6">
+<circle cx="185" cy="197" r="27"/>
+<circle cx="310" cy="197" r="27"/>
+</g>
+<g fill="#81978a">
+<circle cx="185" cy="197" r="9"/>
+<circle cx="310" cy="197" r="9"/>
+</g>
+<path d="M251 109V72h89v33" fill="none" stroke="#293d3e" stroke-width="8"/>
+<rect x="318" y="98" width="44" height="22" rx="3" fill="#ed8e59"/>
+<path d="M330 126l-32 59h83l-31-59" fill="#61b7a4" fill-opacity=".17" stroke="#3b8d79" stroke-dasharray="4 5"/>
+<g fill="none" stroke="#527954" stroke-width="3">
+<path d="M404 241v-32m0 19q-19 0-19-17 19 0 19 17m0-8q19 0 19-17-19 0-19 17M456 210v-26m0 13q-16 0-16-14 16 0 16 14m0-7q16 0 16-14-16 0-16 14M89 251v-30m0 17q-18 0-18-16 18 0 18 16m0-8q18 0 18-16-18 0-18 16"/>
+</g>
+</svg>
+<div class="usecase-text">
+<span class="tag">Agriculture / Concept</span>
+<h3>Adapt to the crop.<br>Not the connector.</h3>
+<p>Imagine a field platform that can exchange sensing and task modules as seasonal needs change. Common discovery and execution could help make those transitions simpler.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="consortium">
+<div class="wrap split">
+<div>
+<p class="eyebrow">06 / The consortium</p>
+<h2>A shared standard<br>needs shared experience.</h2>
+</div>
+<div class="consortium-box">
+<p>ACES is a cross-domain initiative working toward an open, vendor-neutral standard for modular robotics and IoT interoperability.</p>
+<p>Perspectives from hardware makers, integrators, operators, and researchers can help turn real integration challenges into useful requirements.</p>
+<a href="#join">Bring your perspective <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+</section>
+<section id="resources">
+<div class="wrap roadmap">
+<div>
+<p class="eyebrow">07 / Development direction</p>
+<h2>A standard in the making.</h2>
+<div class="roadmap-item">
+<span class="pill">Current / Working draft v0.2</span>
+<h3>Refine the module boundary</h3>
+<p>The specification is under development. Physical and electrical particulars remain open.</p>
+</div>
+<div class="roadmap-item">
+<span class="pill">Open work / Participation welcome</span>
+<h3>Ground the approach in real requirements</h3>
+<p>Discuss use cases, implementation questions, and what practical interoperability needs to achieve. This is a direction for discussion, not a committed release schedule.</p>
+</div>
+<div class="roadmap-item">
+<span class="pill">Not yet available</span>
+<h3>Certification</h3>
+<p>No certification is currently offered. Compatibility and performance claims require future validation.</p>
+</div>
+</div>
+<div>
+<p class="eyebrow">Resources</p>
+<a class="resource" href="standard.html"><span><strong>The Standard</strong><small>Specification, scope, and licensing documents · Private review</small></span><span aria-hidden="true">↗</span></a>
+<a class="resource" href="ACES-Consortium-Overview.pdf" target="_blank" rel="noopener" aria-label="ACES Consortium Overview (PDF, opens in a new tab)">
+<span>
+<strong>ACES Consortium Overview</strong>
+<small>Read the initiative’s vision, scope, and approach · PDF</small>
+</span>
+<span aria-hidden="true">↗</span>
+</a>
+<a class="resource" href="https://forms.gle/AHRyF8r9wquhLAK77">
+<span>
+<strong>Express interest in participating</strong>
+<small>Introduce your organization or area of interest · Google Form</small>
+</span>
+<span aria-hidden="true">↗</span>
+</a>
+<a class="resource" href="mailto:info@aces-consortium.org">
+<span>
+<strong>Talk with the consortium</strong>
+<small>info@aces-consortium.org</small>
+</span>
+<span aria-hidden="true">↗</span>
+</a>
+<p class="note">The overview describes the initiative’s intended direction. It is not a finalized technical specification or a statement of certified capabilities.</p>
+</div>
+</div>
+</section>
+<section class="join" id="join">
+<div class="wrap split">
+<div>
+<p class="eyebrow">Make the connection</p>
+<h2>Help shape what<br>connects us next.</h2>
+<p>Working on modular hardware, robotics, or IoT? Bring your challenges, experience, and ideas to the conversation.</p>
+</div>
+<div>
+<a class="button" href="https://forms.gle/AHRyF8r9wquhLAK77">Join the conversation <span aria-hidden="true">↗</span>
+</a>
+<a class="contact" href="mailto:info@aces-consortium.org">info@aces-consortium.org</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap footer-row">
+<div>
+<strong>ACES.</strong> <span style="margin-left:15px">A common foundation for modular systems.</span>
+</div>
+<div class="footer-links">
+<a href="ACES-Consortium-Overview.pdf" target="_blank" rel="noopener" aria-label="Overview PDF (opens in a new tab)">Overview PDF</a>
+<a href="#resources">Development status</a>
+<a href="#">Back to top ↑</a>
+</div>
+</div>
+</footer>
 </body>
 </html>
