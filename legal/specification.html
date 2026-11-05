@@ -1,0 +1,592 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#15191b"><title>ACES: Appliance Communications and Execution Standard · ACES</title><link rel="stylesheet" href="documents.css"></head><body><a class="skip" href="#main">Skip to content</a><header><div><a class="brand" href="../index.html" aria-label="ACES Consortium home">ACES<span>.</span></a><nav aria-label="Document navigation"><a href="../standard.html">The Standard</a><a href="notices.html">Notices</a><a href="../index.html">Home</a></nav></div></header><main class="layout"><div class="tools"><a href="../standard.html">← All standard documents</a><a href="../spec/ACES-Specification-v0.2.1.md" download>Download original Markdown</a><a href="../spec/ACES-Specification-v0.2.1.docx" download>Download original Word</a></div><p class="source-note">HTML reading edition of the supplied document. The original download is preserved unchanged.</p><details class="toc-box"><summary>On this page</summary><ul class="toc"><li class="level-2"><a href="#1-scope">1. Scope</a></li><li class="level-2"><a href="#2-referenced-and-related-standards">2. Referenced and Related Standards</a></li><li class="level-2"><a href="#3-definitions-and-abbreviations">3. Definitions and Abbreviations</a></li><li class="level-2"><a href="#4-physical-interface-specification">4. Physical Interface Specification</a></li><li class="level-3"><a href="#41-design-principles">4.1 Design Principles</a></li><li class="level-3"><a href="#42-passive-adapter-model">4.2 Passive Adapter Model</a></li><li class="level-3"><a href="#43-horizontal-scaling">4.3 Horizontal Scaling</a></li><li class="level-3"><a href="#44-interface-classes">4.4 Interface Classes</a></li><li class="level-2"><a href="#5-logical-interface-specification">5. Logical Interface Specification</a></li><li class="level-3"><a href="#51-transport-independence">5.1 Transport Independence</a></li><li class="level-3"><a href="#52-core-operations">5.2 Core Operations</a></li><li class="level-3"><a href="#53-electronic-data-sheet">5.3 Electronic Data Sheet</a></li><li class="level-3"><a href="#54-example-electronic-data-sheet">5.4 Example Electronic Data Sheet</a></li><li class="level-3"><a href="#55-function-invocation">5.5 Function Invocation</a></li><li class="level-3"><a href="#56-acknowledgement-and-execution-state">5.6 Acknowledgement and Execution State</a></li><li class="level-3"><a href="#57-errors">5.7 Errors</a></li><li class="level-3"><a href="#58-telemetry">5.8 Telemetry</a></li><li class="level-3"><a href="#59-module-lifecycle">5.9 Module Lifecycle</a></li><li class="level-2"><a href="#6-security">6. Security</a></li><li class="level-3"><a href="#61-scope">6.1 Scope</a></li><li class="level-3"><a href="#62-security-objectives">6.2 Security Objectives</a></li><li class="level-3"><a href="#63-safety-and-security-separation">6.3 Safety and Security Separation</a></li><li class="level-2"><a href="#7-conformance-and-certification">7. Conformance and Certification</a></li><li class="level-3"><a href="#71-core-conformance">7.1 Core Conformance</a></li><li class="level-3"><a href="#72-physical-conformance">7.2 Physical Conformance</a></li><li class="level-3"><a href="#73-transport-profile-conformance">7.3 Transport Profile Conformance</a></li><li class="level-3"><a href="#74-certification">7.4 Certification</a></li><li class="level-2"><a href="#8-versioning">8. Versioning</a></li><li class="level-2"><a href="#9-licensing-and-governance">9. Licensing and Governance</a></li><li class="level-3"><a href="#91-specification-license-and-effective-framework">9.1 Specification License and Effective Framework</a></li><li class="level-3"><a href="#92-ownership-attribution-and-earlier-versions">9.2 Ownership, Attribution and Earlier Versions</a></li><li class="level-3"><a href="#93-source-code-and-machine-readable-examples">9.3 Source Code and Machine-Readable Examples</a></li><li class="level-3"><a href="#94-membership-contributions-and-acceptance">9.4 Membership, Contributions and Acceptance</a></li><li class="level-3"><a href="#95-patent-terms-implementer-acceptance-and-exclusions">9.5 Patent Terms, Implementer Acceptance and Exclusions</a></li><li class="level-3"><a href="#96-independent-implementations-forks-and-aces-identity">9.6 Independent Implementations, Forks and ACES Identity</a></li><li class="level-3"><a href="#97-governance-and-public-releases">9.7 Governance and Public Releases</a></li><li class="level-3"><a href="#98-distribution-disclaimer">9.8 Distribution Disclaimer</a></li><li class="level-2"><a href="#10-separation-of-responsibilities">10. Separation of Responsibilities</a></li><li class="level-2"><a href="#11-annexes">11. Annexes</a></li><li class="level-3"><a href="#annex-a-preliminary-eds-schema">Annex A: Preliminary EDS Schema</a></li><li class="level-3"><a href="#annex-b-physical-interface-definition">Annex B: Physical Interface Definition</a></li><li class="level-3"><a href="#annex-c-example-mqtt-transport-profile">Annex C: Example MQTT Transport Profile</a></li><li class="level-3"><a href="#annex-d-example-can-transport-profile">Annex D: Example CAN Transport Profile</a></li><li class="level-3"><a href="#annex-e-preliminary-certification-test-categories">Annex E: Preliminary Certification Test Categories</a></li><li class="level-3"><a href="#annex-f-architectural-principle">Annex F: Architectural Principle</a></li></ul></details><article class="document" id="main"><h1 id="aces-appliance-communications-and-execution-standard">ACES: Appliance Communications and Execution Standard</h1>
+<p>Version 0.2.1 - Licensing and Governance Revision<br>Date: 5 November 2026<br>Technical baseline: Version 0.2, dated 21 September 2026<br>Technical status: Working draft<br>Legal framework: Version 1.0, effective 5 November 2026<br>Maintained by: ACES Consortium</p>
+<h2 id="1-scope">1. Scope</h2>
+<p>This document defines the ACES (Appliance Communications and Execution Standard), an open, vendor-neutral standard for physical and logical interoperability across modular robotics and IoT systems.</p>
+<p>ACES defines a standardized module boundary through which devices can:</p>
+<ul>
+<li>Connect mechanically to a host system or other compatible infrastructure.</li>
+<li>Receive electrical power.</li>
+<li>Exchange data.</li>
+<li>Declare their capabilities and operational requirements.</li>
+<li>Expose functions that can be invoked using standardized execution semantics.</li>
+</ul>
+<p>Work in parallel to provide the necessary energy and bandwidth</p>
+<ul>
+<li>Return status, errors, and telemetry.</li>
+</ul>
+<p>ACES is intended to enable modular devices from different manufacturers, industries, and generations to be integrated without bespoke physical, electrical, or software integration.</p>
+<p>The standard is industry-agnostic. Initial target domains include agriculture, smart cities, industrial automation, autonomous systems, sensing, energy, and field-deployed robotics.</p>
+<p>ACES does not define system-level orchestration, optimization, routing, decision-making, or application logic. It also does not mandate a particular messaging protocol, network architecture, or transport technology.</p>
+<p>Protocols such as MQTT, CAN, Ethernet, OPC UA, HTTP, ISOBUS, RF, cellular, and future transports may carry ACES-compatible execution semantics.</p>
+<p>The objective of ACES is to standardize the boundary between software intent and physical capability while allowing both the hardware and software ecosystems on either side of that boundary to evolve independently.</p>
+<h2 id="2-referenced-and-related-standards">2. Referenced and Related Standards</h2>
+<p>The following standards are relevant to ACES design and implementation.</p>
+<p>Unless explicitly incorporated into a future ACES conformance profile, they are informative references rather than mandatory ACES dependencies.</p>
+<ul>
+<li>ISO/IEC 7498-1:1994 – Open Systems Interconnection Basic Reference Model.</li>
+<li>ISO 11898-1:2024 – Controller Area Network (CAN), data link layer and physical coding sublayer.</li>
+<li>IEC 61131-3:2025 – Programmable controllers, programming languages.</li>
+<li>ISO 11783 series – Serial control and communications data network for agricultural and forestry machinery (ISOBUS).</li>
+<li>OASIS MQTT Version 5.0 – Publish/subscribe messaging transport.</li>
+<li>JSON Schema Draft 2020-12 – Machine-readable data schema definition.</li>
+<li>IEEE 802.3 family – Ethernet.</li>
+<li>OPC UA Part 14, Version 1.05.06 – PubSub communication model.</li>
+<li>RFC 8446 – Transport Layer Security (TLS) 1.3.</li>
+</ul>
+<p>ACES is intended to complement these technologies rather than replace them.</p>
+<h2 id="3-definitions-and-abbreviations">3. Definitions and Abbreviations</h2>
+<h4>ACES Module</h4>
+<p>A physical device exposing one or more functions through an ACES-compliant module interface.</p>
+<p>Examples include sensors, actuators, robotic arms, propulsion units, pumps, cameras, power systems, processing units, agricultural implements, and industrial equipment.</p>
+<h4>ACES Adapter</h4>
+<p>The standardized physical interface between an ACES module and the system to which it is connected.</p>
+<p>An ACES adapter provides the required mechanical structure, electrical interface, and data transport.</p>
+<p>The adapter is passive. It contains no orchestration logic, performs no system-level decision-making, and does not interpret the intended use of a module.</p>
+<h4>EDS – Electronic Data Sheet</h4>
+<p>A machine-readable description of an ACES module.</p>
+<p>The EDS declares what the module can do, the parameters accepted by its functions, the telemetry it produces, its power requirements, interfaces, and relevant operational characteristics.</p>
+<h4>Capability</h4>
+<p>A function exposed by an ACES module that can be invoked by a compatible controlling system.</p>
+<h4>Controlling System</h4>
+<p>Any system capable of discovering ACES modules and invoking their capabilities.</p>
+<p>A controlling system may be a PLC, edge computer, embedded controller, application, cloud service, AI system, human-operated system, or another ACES-compatible module.</p>
+<h4>Execution Contract</h4>
+<p>The standardized semantics governing how a capability is invoked and how acknowledgement, state, errors, completion, and telemetry are reported.</p>
+<h4>Transport Profile</h4>
+<p>A specification describing how ACES semantics are carried over a particular physical or communications technology.</p>
+<p>Examples may include MQTT, CAN, Ethernet, OPC UA, or domain-specific transports.</p>
+<h2 id="4-physical-interface-specification">4. Physical Interface Specification</h2>
+<h3 id="41-design-principles">4.1 Design Principles</h3>
+<p>ACES defines a standardized physical module interface covering:</p>
+<ul>
+<li>Mechanical coupling.</li>
+<li>Electrical power delivery.</li>
+<li>Data connectivity.</li>
+<li>Module presence and discovery mechanisms where applicable.</li>
+<li>Predictable scaling through multiple interfaces.</li>
+</ul>
+<p>An ACES-compliant module may connect through one or more ACES adapters.</p>
+<h3 id="42-passive-adapter-model">4.2 Passive Adapter Model</h3>
+<p>The ACES adapter shall act as a passive interface.</p>
+<p>The adapter shall not:</p>
+<ul>
+<li>Perform orchestration.</li>
+<li>Determine how a module is used.</li>
+<li>Optimize system behavior.</li>
+<li>Contain application-specific decision logic.</li>
+<li>Require dependence on a specific software platform.</li>
+</ul>
+<p>Its function is to provide a predictable physical interface through which power, data, and mechanical support can be delivered.</p>
+<h3 id="43-horizontal-scaling">4.3 Horizontal Scaling</h3>
+<p>ACES is designed around horizontal scaling.</p>
+<p>When a module requires more electrical power, data bandwidth, or mechanical support than one adapter can provide, multiple ACES adapters may be used in parallel.</p>
+<p>This avoids requiring a single oversized connector capable of supporting every possible device class.</p>
+<p>A low-power sensor may require only one interface.</p>
+<p>A high-power actuator, propulsion unit, processing system, or industrial module may use several interfaces.</p>
+<p>The module’s EDS shall declare the interface resources it requires.</p>
+<h3 id="44-interface-classes">4.4 Interface Classes</h3>
+<p>ACES may define multiple physical interface classes appropriate to different operating environments and loads.</p>
+<p>Each physical profile shall specify, where applicable:</p>
+<ul>
+<li>Mechanical dimensions and mating geometry.</li>
+<li>Alignment and retention mechanisms.</li>
+<li>Electrical voltage and current ranges.</li>
+<li>Grounding requirements.</li>
+<li>Electrical protection requirements.</li>
+<li>Data signaling interfaces.</li>
+<li>Environmental protection requirements.</li>
+<li>Mechanical load limits.</li>
+<li>Connection and disconnection behavior.</li>
+<li>Hot-plug or hot-swap requirements.</li>
+<li>Safety characteristics.</li>
+</ul>
+<p>The exact connector geometry, electrical pin allocation, voltage classes, and signaling configuration are not fixed by this working draft and remain subject to consortium validation.</p>
+<h2 id="5-logical-interface-specification">5. Logical Interface Specification</h2>
+<h3 id="51-transport-independence">5.1 Transport Independence</h3>
+<p>The ACES core specification defines execution semantics independently of the underlying messaging or transport technology.</p>
+<p>ACES does not require MQTT, CAN-FD, Ethernet, OPC UA, HTTP, ISOBUS, or any other specific transport.</p>
+<p>A transport profile defines how ACES operations are represented on a particular transport.</p>
+<p>This separation allows ACES-compatible modules to operate across different industries and communications environments without changing the underlying execution model.</p>
+<h3 id="52-core-operations">5.2 Core Operations</h3>
+<p>An ACES implementation shall support the concepts required for the following operations:</p>
+<h4>DISCOVER</h4>
+<p>Determine that a compatible module is available.</p>
+<h4>DESCRIBE</h4>
+<p>Obtain the module’s Electronic Data Sheet.</p>
+<h4>INVOKE</h4>
+<p>Request execution of a capability exposed by the module.</p>
+<h4>ACKNOWLEDGE</h4>
+<p>Confirm that an invocation has been received and indicate whether it has been accepted or rejected.</p>
+<h4>STATE</h4>
+<p>Report the current operational state of the module or an active invocation.</p>
+<h4>TELEMETRY</h4>
+<p>Return data generated by the module.</p>
+<h4>ERROR</h4>
+<p>Report an error or abnormal condition using standardized error semantics.</p>
+<h4>CONFIGURE</h4>
+<p>Modify permitted module parameters where configuration is supported.</p>
+<h3 id="53-electronic-data-sheet">5.3 Electronic Data Sheet</h3>
+<p>Each ACES module shall expose an Electronic Data Sheet.</p>
+<p>The EDS provides a machine-readable description of the module and shall contain sufficient information for a controlling system to determine:</p>
+<ul>
+<li>Module identity.</li>
+<li>Manufacturer.</li>
+<li>Module type and version.</li>
+<li>Supported ACES specification version.</li>
+<li>Available capabilities.</li>
+<li>Parameters accepted by each capability.</li>
+<li>Data or result structures returned by those capabilities.</li>
+<li>Available telemetry.</li>
+<li>Power requirements.</li>
+<li>Physical interface requirements.</li>
+<li>Operational constraints relevant to safe invocation.</li>
+</ul>
+<p>The EDS describes what a module can do.</p>
+<p>It does not define when, why, or in what sequence those capabilities should be used.</p>
+<h3 id="54-example-electronic-data-sheet">5.4 Example Electronic Data Sheet</h3>
+<p>The following JSON representation is illustrative. JSON is not mandated as the only possible serialization format.</p>
+<pre><code class="language-json">{
+"aces_version": "0.2",
+"module_id": "pump-12A3",
+"manufacturer": "Irritech",
+"model": "FlowPump-120",
+"module_version": "1.2.0",
+"capabilities": [
+{
+"name": "start"
+},
+{
+"name": "stop"
+},
+{
+"name": "set_flow",
+"parameters": {
+"value": {
+"type": "number",
+"unit": "L/min"
+}
+}
+}
+],
+"telemetry": {
+"flow_rate": {
+"type": "number",
+"unit": "L/min"
+},
+"pressure": {
+"type": "number",
+"unit": "kPa"
+}
+},
+"power_profile": {
+"nominal_w": 120,
+"peak_w": 300
+},
+"interfaces": {
+"required_adapters": 1
+}
+}
+</code></pre>
+<h3 id="55-function-invocation">5.5 Function Invocation</h3>
+<p>A controlling system invokes a function declared in the module’s EDS.</p>
+<p>An invocation shall include sufficient information to identify:</p>
+<ul>
+<li>The target module.</li>
+<li>The requested capability.</li>
+<li>Input parameters.</li>
+<li>A unique invocation identifier.</li>
+<li>Relevant timing or validity information where applicable.</li>
+</ul>
+<p>Illustrative representation:</p>
+<pre><code class="language-json">{
+"invocation_id": "job-804921",
+"module_id": "pump-12A3",
+"function": "set_flow",
+"parameters": {
+"value": 12.5
+},
+"timestamp": "2026-09-21T07:45:00Z"
+}
+</code></pre>
+<h3 id="56-acknowledgement-and-execution-state">5.6 Acknowledgement and Execution State</h3>
+<p>A module shall provide an acknowledgement for an invocation.</p>
+<p>The acknowledgement shall indicate whether the invocation was:</p>
+<ul>
+<li>Accepted.</li>
+<li>Rejected.</li>
+<li>Invalid.</li>
+<li>Unsupported.</li>
+<li>Unable to execute because of the module’s current state.</li>
+</ul>
+<p>Long-running operations should expose their execution state.</p>
+<p>Typical execution states may include:</p>
+<ul>
+<li>accepted</li>
+<li>queued</li>
+<li>running</li>
+<li>completed</li>
+<li>failed</li>
+<li>cancelled</li>
+</ul>
+<h3 id="57-errors">5.7 Errors</h3>
+<p>Error reporting shall distinguish between:</p>
+<ul>
+<li>Invalid requests.</li>
+<li>Unsupported capabilities.</li>
+<li>Invalid parameters.</li>
+<li>Resource limitations.</li>
+<li>Safety constraints.</li>
+<li>Hardware faults.</li>
+<li>Communication faults.</li>
+<li>Execution failures.</li>
+</ul>
+<p>Transport profiles may define how these error states are encoded, but their logical meaning shall remain consistent.</p>
+<h3 id="58-telemetry">5.8 Telemetry</h3>
+<p>ACES defines how module telemetry is described and exposed at the execution boundary.</p>
+<p>ACES does not define:</p>
+<ul>
+<li>Where telemetry is ultimately stored.</li>
+<li>How telemetry is aggregated.</li>
+<li>How telemetry is analyzed.</li>
+<li>Which database or cloud platform receives it.</li>
+<li>How routing is performed outside the ACES module boundary.</li>
+</ul>
+<p>These responsibilities remain with higher-level systems.</p>
+<h3 id="59-module-lifecycle">5.9 Module Lifecycle</h3>
+<p>A typical ACES module lifecycle is:</p>
+<ol>
+<li><p>Module is physically connected.</p>
+</li>
+<li><p>The system detects the module.</p>
+</li>
+<li><p>The module exposes its EDS.</p>
+</li>
+<li><p>The controlling system reads and validates the EDS.</p>
+</li>
+<li><p>The module’s available capabilities become accessible to the controlling system.</p>
+</li>
+<li><p>Capabilities are invoked as required.</p>
+</li>
+<li><p>Acknowledgements, state, errors, and telemetry are returned.</p>
+</li>
+<li><p>If the module is removed or replaced, the system updates its representation of available capabilities.</p>
+</li>
+</ol>
+<p>A replacement module may expose a different implementation while maintaining compatible ACES capabilities.</p>
+<h2 id="6-security">6. Security</h2>
+<h3 id="61-scope">6.1 Scope</h3>
+<p>ACES defines security requirements at the module execution boundary but does not mandate a single security architecture for every transport or deployment.</p>
+<p>Security mechanisms shall be appropriate to the selected ACES transport profile and deployment environment.</p>
+<h3 id="62-security-objectives">6.2 Security Objectives</h3>
+<p>ACES deployments should provide mechanisms for:</p>
+<ul>
+<li>Module identification.</li>
+<li>Authentication where required.</li>
+<li>Authorization of function invocation.</li>
+<li>Message integrity.</li>
+<li>Protection against unauthorized or malformed commands.</li>
+<li>Replay protection where relevant.</li>
+<li>Confidentiality where operational data requires it.</li>
+<li>Traceability of security-relevant operations where required.</li>
+</ul>
+<p>Transport-specific security shall be defined by the applicable profile.</p>
+<p>For example, an IP-based MQTT profile may use TLS 1.3 and mutual authentication, while a CAN-based profile may use mechanisms appropriate to the capabilities and constraints of that network.</p>
+<h3 id="63-safety-and-security-separation">6.3 Safety and Security Separation</h3>
+<p>Security authorization does not override module-level safety constraints.</p>
+<p>A correctly authenticated command may still be rejected if execution would violate a module’s declared safety or operational limits.</p>
+<h2 id="7-conformance-and-certification">7. Conformance and Certification</h2>
+<h3 id="71-core-conformance">7.1 Core Conformance</h3>
+<p>ACES core conformance shall test:</p>
+<ul>
+<li>EDS validity.</li>
+<li>Capability declaration.</li>
+<li>Function invocation semantics.</li>
+<li>Acknowledgement behavior.</li>
+<li>State reporting.</li>
+<li>Error reporting.</li>
+<li>Telemetry description.</li>
+<li>Version compatibility.</li>
+</ul>
+<h3 id="72-physical-conformance">7.2 Physical Conformance</h3>
+<p>Physical conformance testing shall be profile-specific and may include:</p>
+<ul>
+<li>Connector mating and retention.</li>
+<li>Electrical compatibility.</li>
+<li>Mechanical tolerances.</li>
+<li>Environmental requirements.</li>
+<li>Power delivery.</li>
+<li>Data integrity.</li>
+<li>Multiple-adapter operation.</li>
+<li>Connection and disconnection behavior.</li>
+</ul>
+<h3 id="73-transport-profile-conformance">7.3 Transport Profile Conformance</h3>
+<p>An implementation claiming compatibility with a specific ACES transport profile shall pass the tests defined for that profile.</p>
+<p>A module may support more than one ACES transport profile.</p>
+<h3 id="74-certification">7.4 Certification</h3>
+<p>The ACES Consortium intends to maintain a formal conformance and certification framework.</p>
+<p>The framework is expected to include:</p>
+<ul>
+<li>Core ACES compliance criteria.</li>
+<li>Physical interface profile tests.</li>
+<li>Transport profile tests.</li>
+<li>EDS validation tooling.</li>
+<li>Reference implementations.</li>
+<li>Certification requirements and levels.</li>
+</ul>
+<p>The formal certification program is not yet normative in this working draft.</p>
+<h2 id="8-versioning">8. Versioning</h2>
+<p>ACES specifications shall use semantic versioning.</p>
+<h4>MAJOR</h4>
+<p>Breaking changes to the ACES module boundary, physical compatibility requirements, EDS contract, or execution semantics.</p>
+<h4>MINOR</h4>
+<p>Backward-compatible capabilities, fields, profiles, or execution semantics.</p>
+<h4>PATCH</h4>
+<p>Clarifications, corrections, editorial changes, and other non-breaking updates.</p>
+<p>Each EDS shall identify the ACES specification version against which it was implemented.</p>
+<p>Individual physical and transport profiles may maintain their own version numbers independently of the ACES core version.</p>
+<h2 id="9-licensing-and-governance">9. Licensing and Governance</h2>
+<h3 id="91-specification-license-and-effective-framework">9.1 Specification License and Effective Framework</h3>
+<p>ACES is an open, vendor-neutral specification-development project supporting both open-source and proprietary implementations. This edition is licensed under the unmodified Community Specification License 1.0 (CSL), supplied in LICENSE.md. Scope.md defines the Working Group scope for the patent provisions. LICENSING.md identifies specification and code-license boundaries.</p>
+<p>The ACES legal framework version 1.0 is effective from 5 November 2026. Its adoption, existing-member acceptance on the coordinator's confirmation, and Reuven Farchi's acceptance and authorization as the initial and sole technical contributor to this baseline are recorded in Notices.md. No further adoption decision or duplicate signature is required for that initial material.</p>
+<p>The legal framework is effective independently of technical maturity. Document revision 0.2.1 remains a working draft, not an Approved Specification as defined by CSL. CSL controls its grants, definitions, conditions, exclusions and termination provisions; this section and the companion policies do not amend that license.</p>
+<h3 id="92-ownership-attribution-and-earlier-versions">9.2 Ownership, Attribution and Earlier Versions</h3>
+<p>Rights remain with their respective holders unless separately assigned. ACES Consortium stewards official releases; membership, implementation, contribution or repository administration does not transfer ownership of another party's material. No transfer to a foundation or other entity is created by this framework.</p>
+<p>Derivative specification material must carry the Working Group attribution required by CSL Section 1.2, including the material's name, version and retrieval source. That section does not require attribution on an implementation solely because it implements ACES. Preserve applicable third-party notices and earlier licenses; this revision does not revoke earlier grants or retrospectively bind non-consenting parties.</p>
+<h3 id="93-source-code-and-machine-readable-examples">9.3 Source Code and Machine-Readable Examples</h3>
+<p>The original ACES JSON examples in Sections 5.4 and 5.5 and the preliminary JSON Schema in Annex A are licensed under Apache License, Version 2.0, supplied in LICENSES/Apache-2.0.txt. The surrounding explanatory text remains specification material under CSL. This designation does not change the examples' illustrative or non-normative technical status.</p>
+<p>Future source-code material must carry an explicit source-code license. Existing website code, dependencies, external standards, logos and unrelated assets are not relicensed by this framework. Code licenses and the CSL specification patent provisions are separate; see LICENSING.md.</p>
+<h3 id="94-membership-contributions-and-acceptance">9.4 Membership, Contributions and Acceptance</h3>
+<p>Consortium membership incorporates acceptance of MEMBERSHIP.md, the ACES contributor agreement in CONTRIBUTOR-AGREEMENT.md, CSL and the applicable Scope. Existing acceptance is recorded in Notices.md. New members affirm acceptance through enrollment. Members do not need a separate signature or a duplicate agreement for every contribution.</p>
+<p>Non-members may contribute under CONTRIBUTING.md by accepting the contributor agreement through an authorized submission. A person acting for an employer, client, company or other party must have the authority required by CSL Section 8.1. Membership does not license unrelated third-party rights or assign authorship to a member that has not contributed material.</p>
+<p>Do not incorporate confidential information or material under conflicting terms. Preserve provenance for submissions received through repositories, meetings, email or website forms. Ordinary reading or question-only feedback by a non-member is not contributor acceptance through this process. Membership and contributor acceptance do not replace the separate implementer acceptance routes below.</p>
+<h3 id="95-patent-terms-implementer-acceptance-and-exclusions">9.5 Patent Terms, Implementer Acceptance and Exclusions</h3>
+<p>CSL provides defined patent grants and commitments, not a guarantee that every ACES implementation is free from patent claims. Its Section 2.1 grants require a Licensee to use a Section 2.1.3 acceptance method: include the full CSL with the source distribution; include it in the specified materials accompanying a non-source distribution; or have an authorized representative issue the required pull request or commit to Notices.md. These methods include the reciprocal patent obligations in Section 2.1.2.</p>
+<p>Coverage is limited by CSL, including Necessary Claims, Implementation, the detailed required portions, applicable Scope, authority and valid exclusions. Referencing another standard does not grant rights in it. Section 3 permits defined exclusions, including a contribution-based 45-day process and a separate pre-approval process. Follow the full license and Notices.md; this framework does not waive those rights.</p>
+<p>The project shall not approve affected required features while a recorded exclusion or known blocking patent-licensing issue remains unresolved. Governance.md specifies removal, redesign or documented licensing resolution. Existing commitments survive withdrawal as provided by CSL. No patent search, third-party clearance or universal freedom-to-operate assurance is supplied.</p>
+<h3 id="96-independent-implementations-forks-and-aces-identity">9.6 Independent Implementations, Forks and ACES Identity</h3>
+<p>Independent commercial implementations and derivative specifications are permitted under the applicable licenses. CSL does not require every proprietary implementation or fork to publish its own improvements. No ACES-compliant implementation shall be required to use a specific commercial platform, software stack, manufacturer, or consortium member.</p>
+<p>A modified specification must not be misleadingly presented as an official ACES release. Trademark rights are not granted by CSL. TRADEMARKS.md distinguishes truthful references and self-declared compatibility from authorized logos and certification claims. No trademark registration or product certification is conferred by this revision or by consortium membership.</p>
+<h3 id="97-governance-and-public-releases">9.7 Governance and Public Releases</h3>
+<p>Governance.md establishes the operative review, notice and approval procedure. Designation as an Approved Specification requires an express recorded decision on an exact version; adopting the legal framework, merging a change or publishing a working draft does not confer that technical status. Manufacturers, integrators, software providers and service providers may independently create commercial value using ACES.</p>
+<p>Official releases must preserve the version, Scope, licenses, notice snapshot and actual public publication record. Publish the companion legal documents with the specification and keep them publicly accessible. A legal effective date or private commit alone is not evidence of public disclosure. Public technical disclosure may be relevant prior art but does not prevent every patent filing or patents on genuinely new improvements. Follow RELEASE-CHECKLIST.md.</p>
+<h3 id="98-distribution-disclaimer">9.8 Distribution Disclaimer</h3>
+<p>THESE MATERIALS ARE PROVIDED "AS IS." The Contributors and Licensees expressly disclaim any warranties (express, implied, or otherwise), including implied warranties of merchantability, non-infringement, fitness for a particular purpose, or title, related to the materials. The entire risk as to implementing or otherwise using the materials is assumed by the implementer and user. IN NO EVENT WILL THE CONTRIBUTORS OR LICENSEES BE LIABLE TO ANY OTHER PARTY FOR LOST PROFITS OR ANY FORM OF INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS DELIVERABLE OR ITS GOVERNING AGREEMENT, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND WHETHER OR NOT THE OTHER MEMBER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<p>The applicable licenses contain the complete representations, limitations and exceptions. Nothing in this document removes obligations or liabilities that cannot lawfully be excluded. ACES compatibility or certification is not a substitute for the implementer's applicable safety and regulatory obligations.</p>
+<h2 id="10-separation-of-responsibilities">10. Separation of Responsibilities</h2>
+<h4>ACES Standardizes</h4>
+<ul>
+<li>Physical plug-and-play module interfaces.</li>
+<li>Capability declaration through the EDS.</li>
+<li>Standardized function invocation.</li>
+<li>Acknowledgements.</li>
+<li>Execution state.</li>
+<li>Errors.</li>
+<li>Telemetry semantics.</li>
+<li>Compatibility and conformance requirements.</li>
+</ul>
+<h4>ACES Does Not Standardize</h4>
+<ul>
+<li>System-level orchestration.</li>
+<li>Decision-making.</li>
+<li>Optimization.</li>
+<li>Sequencing.</li>
+<li>Operational policy.</li>
+<li>Application-specific behavior.</li>
+<li>Data storage architecture.</li>
+<li>Analytics.</li>
+<li>AI models.</li>
+<li>Network routing.</li>
+<li>A mandatory messaging protocol or transport technology.</li>
+</ul>
+<p>This separation of responsibilities is fundamental to the ACES architecture.</p>
+<h2 id="11-annexes">11. Annexes</h2>
+<h3 id="annex-a-preliminary-eds-schema">Annex A: Preliminary EDS Schema</h3>
+<p>The following schema represents the current working direction for the ACES Electronic Data Sheet.</p>
+<p>It is not yet a final normative schema.</p>
+<pre><code class="language-json">{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://aces-iot.org/schema/eds/0.2",
+"title": "ACES Electronic Data Sheet",
+"type": "object",
+"required": [
+"aces_version",
+"module_id",
+"manufacturer",
+"model",
+"module_version",
+"capabilities",
+"power_profile"
+],
+"properties": {
+"aces_version": {
+  "type": "string"
+},
+
+"module_id": {
+  "type": "string"
+},
+
+"manufacturer": {
+  "type": "string"
+},
+
+"model": {
+  "type": "string"
+},
+
+"module_version": {
+  "type": "string"
+},
+
+"capabilities": {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["name"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "parameters": {
+        "type": "object"
+      },
+      "returns": {
+        "type": "object"
+      }
+    }
+  }
+},
+
+"telemetry": {
+  "type": "object"
+},
+
+"power_profile": {
+  "type": "object",
+  "required": [
+    "nominal_w",
+    "peak_w"
+  ],
+  "properties": {
+    "nominal_w": {
+      "type": "number",
+      "minimum": 0
+    },
+    "peak_w": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+},
+
+"interfaces": {
+  "type": "object"
+},
+
+"constraints": {
+  "type": "object"
+}
+
+}
+}
+</code></pre>
+<h3 id="annex-b-physical-interface-definition">Annex B: Physical Interface Definition</h3>
+<p>The original ACES 0.1 working draft proposed a fixed 8-pin, 48 V DC interface.</p>
+<p>The current ACES architecture instead treats the final physical interface as a consortium design decision requiring cross-domain validation.</p>
+<p>The physical specification shall ultimately define:</p>
+<ul>
+<li>Connector geometry.</li>
+<li>Pin or contact definitions.</li>
+<li>Power classes.</li>
+<li>Data interfaces.</li>
+<li>Grounding and shielding.</li>
+<li>Mechanical support.</li>
+<li>Environmental protection.</li>
+<li>Hot-plug behavior.</li>
+<li>Multi-adapter alignment and aggregation.</li>
+<li>Safety mechanisms.</li>
+</ul>
+<p>Until these parameters are validated and approved by the consortium, no specific connector, pinout, voltage, or current rating should be considered normative ACES.</p>
+<h3 id="annex-c-example-mqtt-transport-profile">Annex C: Example MQTT Transport Profile</h3>
+<p>This annex is non-normative.</p>
+<p>MQTT Version 5.0 may be used as one transport for ACES semantics.</p>
+<p>An MQTT binding could, for example, expose channels corresponding to:</p>
+<pre><code class="language-text">manifest
+invoke
+ack
+state
+telemetry
+config
+error
+</code></pre>
+<p>An illustrative topic structure might be:</p>
+<pre><code class="language-text">aces/&lt;system_id&gt;/&lt;module_id&gt;/
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">aces/farm-01/pump-12A3/invoke
+</code></pre>
+<p>The exact MQTT topic hierarchy, broker architecture, QoS levels, authentication mechanism, retained-message behavior, and payload serialization shall be specified by the MQTT transport profile rather than the ACES core specification.</p>
+<h3 id="annex-d-example-can-transport-profile">Annex D: Example CAN Transport Profile</h3>
+<p>This annex is non-normative.</p>
+<p>CAN or CAN-FD may be used to transport ACES execution semantics in systems where those technologies are appropriate.</p>
+<p>A CAN profile would define deterministic mappings for:</p>
+<ul>
+<li>Module identification.</li>
+<li>EDS discovery or retrieval.</li>
+<li>Capability invocation.</li>
+<li>Acknowledgements.</li>
+<li>State.</li>
+<li>Errors.</li>
+<li>Telemetry.</li>
+</ul>
+<p>The ACES core specification does not allocate fixed CAN identifier ranges.</p>
+<p>Such allocation belongs to the applicable CAN transport profile.</p>
+<h3 id="annex-e-preliminary-certification-test-categories">Annex E: Preliminary Certification Test Categories</h3>
+<h4>Physical Tests</h4>
+<ul>
+<li>Connector compatibility.</li>
+<li>Mechanical mating and retention.</li>
+<li>Electrical compatibility.</li>
+<li>Data interface integrity.</li>
+<li>Environmental profile compliance.</li>
+<li>Multiple-adapter operation where supported.</li>
+</ul>
+<h4>EDS Tests</h4>
+<ul>
+<li>Schema validation.</li>
+<li>Required identity fields.</li>
+<li>Capability declaration.</li>
+<li>Parameter definitions.</li>
+<li>Telemetry definitions.</li>
+<li>Power and interface requirements.</li>
+</ul>
+<h4>Execution Tests</h4>
+<ul>
+<li>Capability discovery.</li>
+<li>Function invocation.</li>
+<li>Positive acknowledgement.</li>
+<li>Rejected invocation behavior.</li>
+<li>Execution state reporting.</li>
+<li>Error reporting.</li>
+<li>Telemetry generation.</li>
+</ul>
+<h4>Interoperability Tests</h4>
+<ul>
+<li>Module substitution.</li>
+<li>Modules from different manufacturers.</li>
+<li>Multiple transport implementations where claimed.</li>
+<li>Addition and removal of modules without bespoke system integration.</li>
+</ul>
+<h4>Security Tests</h4>
+<p>Security tests shall be defined by the applicable transport and deployment profile.</p>
+<h3 id="annex-f-architectural-principle">Annex F: Architectural Principle</h3>
+<p>ACES occupies the boundary between software intent and physical action.</p>
+<p>Higher-level systems determine what should happen.</p>
+<p>Messaging and transport technologies carry information through the system.</p>
+<p>ACES defines how a physical module declares its capabilities, receives a function invocation, executes it, and reports the result.</p>
+<p>This boundary enables physical modularity without requiring a shared orchestration platform, common vendor, or fixed communications architecture.</p>
+<h4>Contact</h4>
+<p>ACES Consortium Coordination Unit
+<a href="mailto:info@aces-consortium.org">info@aces-consortium.org</a></p>
+<p><a href="https://www.aces-consortium.org">https://www.aces-consortium.org</a></p>
+</article></main><footer><div><a href="../standard.html">The Standard</a><a href="../SHA256SUMS.txt">Original file checksums</a><a href="mailto:info@aces-consortium.org">info@aces-consortium.org</a></div></footer></body></html>
